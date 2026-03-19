@@ -9,3 +9,9 @@ Flask
 dill
 yt-dlp
 groq
+dot
+python-dotenv
+PyYAML
+requests
+joblib
+pickle5
