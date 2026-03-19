@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Student Performance Predictor{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2 style="text-align: center; margin-bottom: 20px; font-size: 2.5em; color: #333;">🎓 Student Performance Predictor</h2>
+
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px; display: inline-block;">
+                <h3 style="margin: 0; font-size: 1.5em;">AI-Powered Mathematics Score Prediction</h3>
+                <p style="margin: 10px 0 0 0; opacity: 0.9;">Predict student math performance using advanced machine learning algorithms</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; color: #666; line-height: 1.6;">
+            Our intelligent system analyzes student demographics, academic background, and test scores to predict mathematics performance.
+            Built with cutting-edge ML models achieving 88% accuracy, helping educators identify students who may need additional support.
+        </p>
+
+        <div style="text-align: center; margin-bottom: 35px;">
+            <h3 style="font-size: 1.6em; margin-bottom: 8px; color: #333;">📊 About the Project</h3>
+            <p style="font-size: 1.05em; color: #666; margin: 0;">
+                Discover the technical details, methodology, and impact of this ML-powered educational tool.
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h3 style="color: #495057; margin-bottom: 20px;">🚀 Explore Our Features</h3>
+
+            <!-- Top row: centered Make Predictions card with button -->
+            <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                <div style="max-width: 400px; width: 100%; background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🔮 Make Predictions</h4>
+                    <p style="margin: 0 0 15px 0; color: #666;">Enter student information and get instant math score predictions with detailed insights.</p>
+                    <a href="{{ url_for('predict') }}" class="btn" style="margin-top: 5px; padding: 10px 25px; font-size: 0.95em;">
+                        Start Prediction
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom row: About Project & About Author side-by-side with buttons -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #ffc107;">
+                    <h4 style="color: #ffc107; margin-bottom: 10px;">📊 About the Project</h4>
+                    <p style="margin: 0 0 15px 0; color: #666;">Discover the technical details, methodology, and impact of this ML-powered educational tool.</p>
+                    <a href="{{ url_for('project') }}" class="btn btn-secondary" style="margin-top: 5px; padding: 8px 22px; font-size: 0.9em;">
+                        View Project
+                    </a>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #28a745;">
+                    <h4 style="color: #28a745; margin-bottom: 10px;">👨‍💻 About the Author</h4>
+                    <p style="margin: 0 0 15px 0; color: #666;">Learn about the developer behind this project and their expertise in AI and data science.</p>
+                    <a href="{{ url_for('about') }}" class="btn btn-secondary" style="margin-top: 5px; padding: 8px 22px; font-size: 0.9em;">
+                        View Author
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <h3 style="text-align: center; color: #495057; margin-bottom: 15px;">💡 Key Features</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center;">
+                <div>
+                    <div style="font-size: 2em; margin-bottom: 5px;">🤖</div>
+                    <strong>Advanced ML Models</strong>
+                    <p style="font-size: 0.9em; color: #666; margin: 5px 0;">Random Forest, XGBoost, CatBoost</p>
+                </div>
+                <div>
+                    <div style="font-size: 2em; margin-bottom: 5px;">📈</div>
+                    <strong>88% Accuracy</strong>
+                    <p style="font-size: 0.9em; color: #666; margin: 5px 0;">R² Score Performance</p>
+                </div>
+                <div>
+                    <div style="font-size: 2em; margin-bottom: 5px;">⚡</div>
+                    <strong>Real-time Predictions</strong>
+                    <p style="font-size: 0.9em; color: #666; margin: 5px 0;">Instant Results</p>
+                </div>
+                <div>
+                    <div style="font-size: 2em; margin-bottom: 5px;">🎓</div>
+                    <strong>Educational Impact</strong>
+                    <p style="font-size: 0.9em; color: #666; margin: 5px 0;">Support Student Success</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

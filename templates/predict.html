@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Predict - Student Performance Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="text-align: center; margin-bottom: 10px;">📝 Student Information Form</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 30px;">
+        Please fill in the student's information below to get a mathematics score prediction.
+    </p>
+
+    <form method="POST" action="{{ url_for('predict') }}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <!-- Left Column -->
+            <div>
+                <div class="form-group">
+                    <label for="gender">👤 Gender:</label>
+                    <select name="gender" id="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="race_ethnicity">🌍 Race/Ethnicity:</label>
+                    <select name="race_ethnicity" id="race_ethnicity" required>
+                        <option value="">Select Race/Ethnicity</option>
+                        <option value="group A">Group A</option>
+                        <option value="group B">Group B</option>
+                        <option value="group C">Group C</option>
+                        <option value="group D">Group D</option>
+                        <option value="group E">Group E</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="parental_education">👨‍👩‍👧‍👦 Parental Level of Education:</label>
+                    <select name="parental_education" id="parental_education" required>
+                        <option value="">Select Education Level</option>
+                        <option value="high school">High School</option>
+                        <option value="some college">Some College</option>
+                        <option value="associate's degree">Associate's Degree</option>
+                        <option value="bachelor's degree">Bachelor's Degree</option>
+                        <option value="master's degree">Master's Degree</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+                <div class="form-group">
+                    <label for="lunch">🍽️ Lunch Type:</label>
+                    <select name="lunch" id="lunch" required>
+                        <option value="">Select Lunch Type</option>
+                        <option value="standard">Standard</option>
+                        <option value="free/reduced">Free/Reduced</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="test_prep">📚 Test Preparation Course:</label>
+                    <select name="test_prep" id="test_prep" required>
+                        <option value="">Select Test Preparation</option>
+                        <option value="none">None</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reading_score">📖 Reading Score (0-100):</label>
+                    <input type="number" name="reading_score" id="reading_score"
+                           min="0" max="100" required placeholder="Enter reading score">
+                </div>
+
+                <div class="form-group">
+                    <label for="writing_score">✍️ Writing Score (0-100):</label>
+                    <input type="number" name="writing_score" id="writing_score"
+                           min="0" max="100" required placeholder="Enter writing score">
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" class="btn" style="font-size: 18px; padding: 15px 40px; margin-right: 10px;">
+                🔮 Get Prediction
+            </button>
+            <a href="{{ url_for('home') }}" class="btn btn-secondary" style="font-size: 16px; padding: 12px 30px;">
+                🏠 Back to Home
+            </a>
+        </div>
+    </form>
+</div>
+
+<script>
+// Add some basic form validation
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const readingScore = document.getElementById('reading_score');
+    const writingScore = document.getElementById('writing_score');
+
+    form.addEventListener('submit', function(e) {
+        let isValid = true;
+
+        // Check if scores are within range
+        if (readingScore.value < 0 || readingScore.value > 100) {
+            alert('Reading score must be between 0 and 100');
+            isValid = false;
+        }
+
+        if (writingScore.value < 0 || writingScore.value > 100) {
+            alert('Writing score must be between 0 and 100');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+});
+</script>
+{% endblock %}

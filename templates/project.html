@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+
+{% block title %}About the Project - Student Performance Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">📊 About the Project</h2>
+
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+        <h3 style="margin: 0 0 15px 0; text-align: center;">🎓 Student Performance Prediction System</h3>
+        <p style="margin: 0; text-align: center; opacity: 0.9; font-size: 1.1em;">
+            An AI-powered educational analytics platform that predicts student mathematics performance using machine learning models and a scalable data science pipeline. The system also integrates an intelligent AI Tutor Chatbot that assists students by answering academic questions and explaining concepts interactively.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🎯 Project Overview</h3>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #666;">
+            The Student Performance Prediction System is a machine learning web application designed to predict a student's mathematics score based on demographic and academic factors such as gender, parental education level, lunch type, test preparation course, reading score, and writing score.
+        </p>
+        <p style="font-size: 1.05em; line-height: 1.6; color: #666; margin-top: 10px;">
+            Trained machine learning models analyze these inputs to generate accurate predictions. A Flask-based web interface allows users to easily enter student details and instantly view prediction results along with performance insights.
+        </p>
+        <p style="font-size: 1.05em; line-height: 1.6; color: #666; margin-top: 10px;">
+            In addition to predictive analytics, the platform includes a built-in AI Tutor Chatbot that allows students to ask questions related to mathematics, data science, or academic topics directly from the web interface. The chatbot provides real-time explanations and learning assistance, making the system both a prediction tool and an interactive educational assistant.
+        </p>
+        <p style="font-size: 1.05em; line-height: 1.6; color: #666; margin-top: 10px;">
+            The project demonstrates an end-to-end machine learning system, combining data processing, model training, and real-time prediction through a production-style data science pipeline. The architecture reflects real-world ML engineering practices used in industry, including data ingestion and preprocessing, feature engineering and transformation, model training and evaluation, an automated prediction pipeline, and deployment via a web application.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🧩 Data Analysis & Prediction Pipeline</h3>
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+            <p style="color: #666; margin-bottom: 15px;">
+                The system follows a structured student data analysis and prediction pipeline, starting from raw data input and ending with a categorized predicted math score.
+            </p>
+            <img src="{{ url_for('static', filename='images/student_data_pipeline.png') }}"
+                 alt="Student Data Analysis and Prediction Pipeline"
+                 style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🔍 Key Features</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                <h4 style="color: #1976d2; margin-bottom: 10px;">🎓 Educational Insights</h4>
+                <p style="margin: 0; color: #666;">Helps educators identify students who may require additional academic support and plan early intervention strategies.</p>
+            </div>
+            <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                <h4 style="color: #7b1fa2; margin-bottom: 10px;">⚡ Real-Time Predictions</h4>
+                <p style="margin: 0; color: #666;">Provides instant math score predictions with performance categorization for quick, data-driven decisions.</p>
+            </div>
+            <div style="background: #e8f5e8; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                <h4 style="color: #388e3c; margin-bottom: 10px;">📊 Student Performance Classification</h4>
+                <p style="margin: 0; color: #666;">Automatically categorizes students into performance bands (No Assistance, Needs Support, Needs Significant Help).</p>
+            </div>
+            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; border-left: 4px solid #ff9800;">
+                <h4 style="color: #f57c00; margin-bottom: 10px;">🔧 Modular ML Architecture</h4>
+                <p style="margin: 0; color: #666;">Implements separate modules for data ingestion, transformation, training, and prediction inspired by real MLOps pipelines.</p>
+            </div>
+            <div style="background: #e8f5ff; padding: 20px; border-radius: 10px; border-left: 4px solid #1976d2;">
+                <h4 style="color: #1565c0; margin-bottom: 10px;">🚀 Production-Oriented Design</h4>
+                <p style="margin: 0; color: #666;">Includes logging, exception handling, model artifacts, and a scalable project structure aligned with CI/CD concepts.</p>
+            </div>
+            <div style="background: #f1f8e9; padding: 20px; border-radius: 10px; border-left: 4px solid #7cb342;">
+                <h4 style="color: #558b2f; margin-bottom: 10px;">📱 Interactive Web Interface</h4>
+                <p style="margin: 0; color: #666;">User-friendly Flask web app where users can input student details and receive predictions in seconds.</p>
+            </div>
+            <div style="background: #ede7f6; padding: 20px; border-radius: 10px; border-left: 4px solid #673ab7;">
+                <h4 style="color: #4527a0; margin-bottom: 10px;">🤖 Built‑in AI Tutor Chatbot</h4>
+                <p style="margin: 0; color: #666;">Floating chatbot available on every page that answers study questions using a Groq‑powered LLM via the <code>/api/tutor</code> endpoint.</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">💻 Technology Stack</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🐍</div>
+                    <strong>Python</strong>
+                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Core programming language</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🔬</div>
+                    <strong>Scikit-learn</strong>
+                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Machine learning models & preprocessing</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🚀</div>
+                    <strong>XGBoost</strong>
+                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Gradient boosting algorithms</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🐱</div>
+                    <strong>CatBoost</strong>
+                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Handling categorical features</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2em; margin-bottom: 10px;">📊</div>
+                    <strong>Pandas &amp; NumPy</strong>
+                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Data processing & numerical computation</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🌶️</div>
+                    <strong>Flask</strong>
+                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Backend web framework</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🖥️</div>
+                    <strong>HTML, CSS, Jinja2</strong>
+                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Frontend templates and styling</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">📋 Input Features</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                <h4 style="color: #667eea; margin-bottom: 15px;">👤 Demographic Information</h4>
+                <ul style="color: #666; margin: 0; padding-left: 20px;">
+                    <li><strong>Gender</strong></li>
+                    <li><strong>Race/Ethnicity</strong></li>
+                    <li><strong>Parental Level of Education</strong></li>
+                </ul>
+            </div>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                <h4 style="color: #28a745; margin-bottom: 15px;">📚 Academic Factors</h4>
+                <ul style="color: #666; margin: 0; padding-left: 20px;">
+                    <li><strong>Lunch Type</strong></li>
+                    <li><strong>Test Preparation Course</strong></li>
+                    <li><strong>Reading Score</strong></li>
+                    <li><strong>Writing Score</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">⚙️ How the System Works</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
+            <ol style="padding-left: 20px; margin: 0;">
+                <li style="margin-bottom: 10px;">
+                    <strong>1️⃣ Data Collection:</strong> The dataset contains student information such as gender, race/ethnicity, parental level of education, lunch type, test preparation course, reading score, and writing score. These features are used as inputs to predict the mathematics score.
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>2️⃣ Data Processing:</strong> The dataset is prepared using preprocessing techniques such as handling missing values, encoding categorical features, and applying feature scaling/normalization so that the models can learn effectively.
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>3️⃣ Model Training:</strong> Multiple machine learning algorithms are trained and evaluated, including Random Forest Regressor, Decision Tree Regressor, Gradient Boosting Regressor, Linear Regression, XGBoost Regressor, CatBoost Regressor, and AdaBoost Regressor. The best model is selected based on R² score performance.
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <strong>4️⃣ Prediction Pipeline:</strong> When a user submits student details through the web interface, the trained model is loaded from the artifacts, the input is preprocessed using the transformation pipeline, and the predicted mathematics score is generated and displayed on the results page.
+                </li>
+                <li>
+                    <strong>5️⃣ AI Tutor Interaction:</strong> Students can also interact with the AI Tutor Chatbot to ask questions related to mathematics or academic topics, enabling personalized learning support alongside prediction insights.
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🎓 Student Assistance Classification</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+            <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-left: 4px solid #43a047;">
+                <h4 style="color: #2e7d32; margin-bottom: 10px;">🟢 No Assistance Needed</h4>
+                <p style="margin: 0; color: #555;">Score ≥ 60 → The student is performing well (Excellent / Good) and typically does not require additional academic support.</p>
+            </div>
+            <div style="background: #fffde7; padding: 20px; border-radius: 10px; border-left: 4px solid #fbc02d;">
+                <h4 style="color: #f57f17; margin-bottom: 10px;">🟡 Needs Support</h4>
+                <p style="margin: 0; color: #555;">Score 40 – 59 → The student may require additional academic support and focused guidance.</p>
+            </div>
+            <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-left: 4px solid #e53935;">
+                <h4 style="color: #c62828; margin-bottom: 10px;">🔴 Needs Significant Help</h4>
+                <p style="margin: 0; color: #555;">Score &lt; 40 → The student may need strong academic assistance and early intervention to improve performance.</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">📂 Project Architecture</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+            <ul style="color: #555; margin: 0; padding-left: 20px; line-height: 1.7;">
+                <li><strong>Core Application:</strong> <code>app.py</code> – handles Flask web routes and prediction logic.</li>
+                <li><strong>Machine Learning Pipeline:</strong> <code>src/components</code> – modules for data ingestion, data transformation, and model training.</li>
+                <li><strong>Prediction Pipeline:</strong> <code>src/pipeline</code> – loads the trained model and preprocessor for real-time predictions.</li>
+                <li><strong>Artifacts:</strong> <code>artifacts/</code> – stores trained models and processed datasets.</li>
+                <li><strong>Notebooks:</strong> <code>notebook/</code> – Jupyter notebooks used for EDA and experimentation.</li>
+                <li><strong>Templates:</strong> <code>templates/</code> – HTML pages used by the Flask web interface.</li>
+                <li><strong>Logs:</strong> <code>logs/</code> – system logs for monitoring and debugging.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">📡 System Architecture</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
+            <p style="margin-bottom: 10px;">The system is designed using a modular machine learning architecture inspired by production AI systems:</p>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>User Input (Student Data) → Flask Web Application</li>
+                <li>Flask Web Application → Prediction Pipeline</li>
+                <li>Prediction Pipeline → Load Preprocessing Pipeline</li>
+                <li>Preprocessing Pipeline → Load Trained ML Model</li>
+                <li>ML Model → Generate Predicted Math Score</li>
+                <li>Predicted Score → Performance Classification</li>
+                <li>Final Output → Display Results on Web Interface</li>
+            </ul>
+        </div>
+        <div style="margin-top: 20px; text-align: center;">
+            <img src="{{ url_for('static', filename='images/student_data_pipeline.png') }}"
+                 alt="Student Data Analysis and Prediction Pipeline"
+                 style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🤖 AI Tutor Chatbot</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
+            <p style="margin-bottom: 10px;">
+                In addition to score prediction, the application includes an integrated <strong>AI Tutor chatbot</strong> that helps students understand mathematical and data science concepts directly from the web interface.
+                A floating chat button is available on every page, opening a conversational window where users can ask questions.
+            </p>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li><strong>Frontend:</strong> Floating chatbot UI built into the base template, accessible from all pages.</li>
+                <li><strong>Backend API:</strong> A dedicated endpoint <code>/api/tutor</code> receives user questions and returns AI-generated answers in JSON.</li>
+                <li><strong>LLM Provider:</strong> Uses the Groq Python SDK with the <code>llama-3.1-8b-instant</code> model for fast, high‑quality educational responses.</li>
+                <li><strong>Configuration:</strong> The Groq API key is securely loaded from a <code>.env</code> file via <code>python-dotenv</code> and never exposed to the frontend.</li>
+                <li><strong>Use Case:</strong> Acts as an interactive study assistant, explaining topics, suggesting resources, and guiding students step‑by‑step.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">📈 Model Performance Dashboard</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+            <p style="color: #555; margin-bottom: 15px;">
+                The performance of the machine learning models is evaluated using multiple regression metrics to ensure reliable predictions:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; text-align: center;">
+                <div>
+                    <div style="font-size: 2em; margin-bottom: 5px; color: #2e7d32;">📊</div>
+                    <strong>R² Score</strong>
+                    <p style="margin: 5px 0; color: #666;">0.88 – explains most of the variance in scores</p>
+                </div>
+                <div>
+                    <div style="font-size: 2em; margin-bottom: 5px; color: #1976d2;">📉</div>
+                    <strong>Mean Absolute Error (MAE)</strong>
+                    <p style="margin: 5px 0; color: #666;">4.2 – average difference between predicted and actual scores</p>
+                </div>
+                <div>
+                    <div style="font-size: 2em; margin-bottom: 5px; color: #f57c00;">🎯</div>
+                    <strong>Root Mean Square Error (RMSE)</strong>
+                    <p style="margin: 5px 0; color: #666;">5.8 – measures the magnitude of prediction errors</p>
+                </div>
+                <div>
+                    <div style="font-size: 2em; margin-bottom: 5px; color: #7b1fa2;">⚡</div>
+                    <strong>Prediction Time</strong>
+                    <p style="margin: 5px 0; color: #666;">&lt; 0.1 sec – supports real-time predictions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🧠 AI Model Explanation</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
+            <p style="margin-bottom: 10px;">
+                The system evaluates several regression algorithms and selects the best-performing model for deployment:
+            </p>
+            <ul style="margin: 0 0 10px 0; padding-left: 20px;">
+                <li>Random Forest Regressor</li>
+                <li>Decision Tree Regressor</li>
+                <li>Gradient Boosting Regressor</li>
+                <li>Linear Regression</li>
+                <li>XGBoost Regressor</li>
+                <li>CatBoost Regressor</li>
+                <li>AdaBoost Regressor</li>
+            </ul>
+            <p style="margin-bottom: 10px;">
+                Models are evaluated using the R² score and error metrics, and the best-performing model is serialized as a model artifact.
+                This artifact is then loaded by the prediction pipeline inside the Flask app to generate real-time predictions.
+            </p>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🔄 CI/CD &amp; MLOps Concepts</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
+            <p style="margin-bottom: 10px;">
+                The project is inspired by modern MLOps and CI/CD practices used in production machine learning systems:
+            </p>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>Modular machine learning pipeline design for easier maintenance and extension.</li>
+                <li>Model artifact management for storing and reusing trained models.</li>
+                <li>Logging and exception handling for debugging and monitoring.</li>
+                <li>Automated prediction pipeline that separates preprocessing from inference.</li>
+                <li>Scalable project architecture suitable for deployment on cloud platforms.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🚀 Future Improvements</h3>
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>Integrate with real educational institution datasets.</li>
+                <li>Containerize the application using Docker and deploy to cloud platforms.</li>
+                <li>Add automated CI/CD pipelines for retraining and updating models.</li>
+                <li>Implement model monitoring and performance tracking dashboards.</li>
+                <li>Build interactive visual dashboards for educators to explore insights.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🌍 Project Impact</h3>
+        <div style="background: #e7f3ff; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
+            <p style="margin-bottom: 10px;">
+                This project demonstrates how AI and data science can improve education systems by predicting student academic performance and providing actionable insights.
+            </p>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>Predicts student mathematics performance using historical data.</li>
+                <li>Identifies students who may need additional academic support.</li>
+                <li>Enables data-driven educational decisions and targeted interventions.</li>
+                <li>Supports early academic intervention strategies for at-risk students.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="{{ url_for('home') }}" class="btn" style="font-size: 18px; padding: 15px 40px; margin-right: 15px;">
+            🏠 Back to Home
+        </a>
+        <a href="{{ url_for('about') }}" class="btn btn-secondary" style="font-size: 18px; padding: 15px 40px; margin-right: 15px;">
+            👨‍💻 About Author
+        </a>
+        <a href="{{ url_for('predict') }}" class="btn btn-secondary" style="font-size: 18px; padding: 15px 40px;">
+            🔮 Try Prediction
+        </a>
+    </div>
+</div>
+{% endblock %}

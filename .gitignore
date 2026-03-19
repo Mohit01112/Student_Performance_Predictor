@@ -49,6 +49,37 @@ coverage.xml
 *.py.cover
 .hypothesis/
 .pytest_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# ML specific
+catboost_info/
+*.pkl.tmp
+model_checkpoints/
+.pytest_cache/
 cover/
 
 # Translations

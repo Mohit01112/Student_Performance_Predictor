@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Error - Student Performance Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="error-box">
+        <h2 style="margin-bottom: 20px;">❌ Oops! Something went wrong</h2>
+        <p style="font-size: 1.1em; margin-bottom: 20px;">
+            We encountered an error while processing your request.
+        </p>
+        <p style="font-family: monospace; background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+            Error: {{ error }}
+        </p>
+        <p>Please try again or contact support if the problem persists.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{{ url_for('predict') }}" class="btn" style="margin-right: 10px;">
+            🔄 Try Again
+        </a>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">
+            🏠 Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

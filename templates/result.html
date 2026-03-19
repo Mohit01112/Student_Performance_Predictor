@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Results - Student Performance Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="text-align: center; margin-bottom: 30px;">🎯 Prediction Results</h2>
+
+    <!-- Prediction Score Display -->
+    <div class="result-box {{ 'excellent' if performance == 'Excellent' else 'good' if performance == 'Good' else 'support' if performance == 'Needs Support' else 'help' }}">
+        <div style="font-size: 4em; margin-bottom: 10px;">{{ emoji }}</div>
+        <div class="score-display">{{ predicted_score }}</div>
+        <h3 style="margin: 10px 0;">{{ performance }}</h3>
+        <p style="font-size: 1.1em; margin: 10px 0;">{{ message }}</p>
+    </div>
+
+    <!-- Student Information Summary -->
+    <div class="student-info">
+        <h3>📊 Student Profile Summary:</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>👤 Gender:</strong> {{ student_data.gender.title() }}
+            </div>
+            <div class="info-item">
+                <strong>🌍 Race/Ethnicity:</strong> {{ student_data.race_ethnicity.title() }}
+            </div>
+            <div class="info-item">
+                <strong>👨‍👩‍👧‍👦 Parental Education:</strong> {{ student_data.parental_education.title() }}
+            </div>
+            <div class="info-item">
+                <strong>🍽️ Lunch Type:</strong> {{ student_data.lunch.title() }}
+            </div>
+            <div class="info-item">
+                <strong>📚 Test Preparation:</strong> {{ student_data.test_prep.title() }}
+            </div>
+            <div class="info-item">
+                <strong>📖 Reading Score:</strong> {{ student_data.reading_score }}/100
+            </div>
+            <div class="info-item">
+                <strong>✍️ Writing Score:</strong> {{ student_data.writing_score }}/100
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{{ url_for('predict') }}" class="btn" style="margin-right: 10px;">
+            🔄 New Prediction
+        </a>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">
+            🏠 Back to Home
+        </a>
+    </div>
+
+    <!-- Additional Insights -->
+    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+        <h3 style="color: #495057; margin-bottom: 15px;">💡 Insights & Recommendations:</h3>
+        <ul style="color: #666; line-height: 1.6;">
+            {% if predicted_score >= 80 %}
+            <li>🎉 This student shows strong potential in mathematics!</li>
+            <li>📈 Consider advanced placement or enrichment programs</li>
+            <li>🌟 May benefit from challenging coursework</li>
+            {% elif predicted_score >= 60 %}
+            <li>👍 Solid foundation in mathematics</li>
+            <li>📚 Regular practice and homework completion recommended</li>
+            <li>🎯 Good candidate for standard curriculum</li>
+            {% elif predicted_score >= 40 %}
+            <li>📖 Additional support may help improve performance</li>
+            <li>👨‍🏫 Consider tutoring or extra help sessions</li>
+            <li>📊 Monitor progress closely</li>
+            {% else %}
+            <li>⚠️ Significant intervention may be needed</li>
+            <li>👨‍🏫 Intensive tutoring and support recommended</li>
+            <li>📞 Consider additional academic resources</li>
+            {% endif %}
+            <li>📊 This prediction is based on machine learning analysis of similar student profiles</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

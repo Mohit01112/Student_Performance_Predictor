@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Student Performance Predictor{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .result-box {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .excellent { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .good { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .support { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .help { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        .score-display {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .student-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .student-info h3 {
+            margin-bottom: 10px;
+            color: #495057;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+
+        .error-box {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+
+        /* --- AI Tutor Button Styling --- */
+        .tutor-chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 24px;
+            transition: 0.3s;
+        }
+
+        .tutor-chat-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* --- Chat Window Styling --- */
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .chat-header {
+            background: #1a73e8;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bot-avatar {
+            background: rgba(255,255,255,0.2);
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .bot-name {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .bot-status {
+            font-size: 11px;
+            opacity: 0.85;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .bot-msg {
+            background: #e9ecef;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .user-msg {
+            background: #1a73e8;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            background: #fff;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .send-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .send-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .chat-window {
+                right: 15px;
+                left: 15px;
+                width: auto;
+                bottom: 95px;
+                height: 70vh;
+            }
+
+            .tutor-chat-button {
+                right: 15px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Student Performance Predictor</h1>
+            <p>Predict mathematics scores using machine learning</p>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <div class="footer">
+            <p>&copy; 2026 Student Performance Prediction System | Built with Flask & Machine Learning</p>
+        </div>
+    </div>
+
+    <div class="tutor-chat-button" id="chatButton" onclick="toggleChat()" title="Ask your AI Tutor">
+        <i class="fas fa-graduation-cap" id="chatIcon"></i>
+    </div>
+
+    <div class="chat-window" id="chatWindow" aria-hidden="true">
+        <div class="chat-header">
+            <div class="header-info">
+                <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+                <div>
+                    <span class="bot-name">AI Tutor</span>
+                    <span class="bot-status">● Online</span>
+                </div>
+            </div>
+            <button class="close-btn" onclick="toggleChat()" aria-label="Close chat">&times;</button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-msg">
+                Hello! I'm your AI Tutor. What subject are we tackling today?
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" placeholder="Ask a question..." id="userInput" autocomplete="off">
+            <button class="send-btn" id="sendBtn" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatIcon = document.getElementById('chatIcon');
+
+            const isOpen = chatWindow.style.display === 'flex';
+            if (!isOpen) {
+                chatWindow.style.display = 'flex';
+                chatWindow.setAttribute('aria-hidden', 'false');
+                chatIcon.classList.remove('fa-graduation-cap');
+                chatIcon.classList.add('fa-times');
+                const input = document.getElementById('userInput');
+                if (input) input.focus();
+            } else {
+                chatWindow.style.display = 'none';
+                chatWindow.setAttribute('aria-hidden', 'true');
+                chatIcon.classList.remove('fa-times');
+                chatIcon.classList.add('fa-graduation-cap');
+            }
+        }
+
+        function appendMessage(text, who) {
+            const chatMessages = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = `message ${who === 'user' ? 'user-msg' : 'bot-msg'}`;
+            div.textContent = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendTutorMessage() {
+            const input = document.getElementById('userInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const message = (input.value || '').trim();
+            if (!message) return;
+
+            input.value = '';
+            appendMessage(message, 'user');
+
+            sendBtn.disabled = true;
+            const loadingText = 'Thinking...';
+            appendMessage(loadingText, 'bot');
+            const chatMessages = document.getElementById('chatMessages');
+            const loadingEl = chatMessages.lastElementChild;
+
+            try {
+                const res = await fetch('{{ url_for("tutor_api") }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Tutor request failed');
+                loadingEl.textContent = data.answer || 'No response.';
+            } catch (err) {
+                loadingEl.textContent = 'Sorry, I could not respond right now.';
+            } finally {
+                sendBtn.disabled = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('userInput');
+            const sendBtn = document.getElementById('sendBtn');
+
+            if (sendBtn) {
+                sendBtn.addEventListener('click', sendTutorMessage);
+            }
+            if (input) {
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        sendTutorMessage();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
