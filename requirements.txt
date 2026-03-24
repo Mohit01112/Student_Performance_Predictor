@@ -8,5 +8,3 @@ groq
 python-dotenv
 yt-dlp
 requests
-setuptools
-wheel
