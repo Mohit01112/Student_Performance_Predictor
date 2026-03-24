@@ -3,345 +3,694 @@
 {% block title %}About the Project - Student Performance Predictor{% endblock %}
 
 {% block content %}
-<div class="card">
-    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">📊 About the Project</h2>
 
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 30px;">
-        <h3 style="margin: 0 0 15px 0; text-align: center;">🎓 Student Performance Prediction System</h3>
-        <p style="margin: 0; text-align: center; opacity: 0.9; font-size: 1.1em;">
-            An AI-powered educational analytics platform that predicts student mathematics performance using machine learning models and a scalable data science pipeline. The system also integrates an intelligent AI Tutor Chatbot that assists students by answering academic questions and explaining concepts interactively.
-        </p>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink:       #1a1a2e;
+    --ink-soft:  #4a4a6a;
+    --paper:     #fafaf7;
+    --accent:    #5c6bc0;
+    --accent-2:  #26c6da;
+    --warn:      #ffa726;
+    --danger:    #ef5350;
+    --success:   #66bb6a;
+    --rule:      rgba(26,26,46,0.1);
+    --card-bg:   #ffffff;
+    --radius:    12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .ap-wrap {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HERO ── */
+  .ap-hero {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 56px;
+  }
+  .ap-hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .ap-hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    color: var(--ink);
+    max-width: 640px;
+    margin-bottom: 20px;
+  }
+  .ap-hero h1 em { font-style: italic; color: var(--accent); }
+  .ap-hero p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: 620px;
+  }
+
+  /* ── SECTION HEADING ── */
+  .ap-section { margin-bottom: 56px; }
+  .ap-section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .ap-section-head span.icon {
+    font-size: 1.1rem;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .ap-section-head h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: var(--ink);
+  }
+
+  /* ── PIPELINE IMAGE ── */
+  .ap-pipeline {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+  }
+  .ap-pipeline img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  /* ── HOW IT WORKS STEPS ── */
+  .ap-steps { display: flex; flex-direction: column; gap: 0; }
+  .ap-step {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ap-step:last-child { border-bottom: none; }
+  .ap-step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+    width: 28px;
+    padding-top: 3px;
+    flex-shrink: 0;
+  }
+  .ap-step-body strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .ap-step-body p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  /* ── FEATURE GRID ── */
+  .ap-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .ap-feature {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .ap-feature:hover { box-shadow: 0 6px 20px rgba(92,107,192,0.12); transform: translateY(-2px); }
+  .ap-feature-icon {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  .ap-feature h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .ap-feature p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ── TECH STACK ── */
+  .ap-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .ap-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    background: var(--card-bg);
+    white-space: nowrap;
+  }
+
+  /* ── INPUTS TWO-COL ── */
+  .ap-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 540px) { .ap-inputs { grid-template-columns: 1fr; } }
+  .ap-input-group {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .ap-input-group h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .ap-input-group ul {
+    padding-left: 16px;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
+
+  /* ── PERFORMANCE TIERS ── */
+  .ap-tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .ap-tier {
+    padding: 20px;
+    border-radius: var(--radius);
+    border-left: 4px solid transparent;
+  }
+  .ap-tier.green  { background: #e8f5e9; border-color: var(--success); }
+  .ap-tier.yellow { background: #fffde7; border-color: var(--warn); }
+  .ap-tier.red    { background: #ffebee; border-color: var(--danger); }
+  .ap-tier h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+  .ap-tier.green  h4 { color: #2e7d32; }
+  .ap-tier.yellow h4 { color: #e65100; }
+  .ap-tier.red    h4 { color: #c62828; }
+  .ap-tier p { font-size: 0.85rem; line-height: 1.6; color: var(--ink-soft); }
+
+  /* ── METRICS ROW ── */
+  .ap-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .ap-metric {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+  .ap-metric .val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .ap-metric .lbl { font-size: 0.78rem; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .ap-metric .desc { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.4; }
+
+  /* ── CODE / ARCH LIST ── */
+  .ap-arch-list {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .ap-arch-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ap-arch-item:last-child { border-bottom: none; }
+  .ap-arch-code {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: #eef0fb;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .ap-arch-item p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; }
+
+  /* ── MODEL LIST ── */
+  .ap-model-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ap-model-chip {
+    font-size: 0.83rem;
+    padding: 6px 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    color: var(--ink-soft);
+  }
+
+  /* ── CHATBOT INFO ── */
+  .ap-chatbot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .ap-chatbot-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+  .ap-chatbot-item .ci-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ap-chatbot-item h5 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .ap-chatbot-item p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ── FUTURE / IMPACT BULLETS ── */
+  .ap-bullet-list {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+  }
+  .ap-bullet-list li {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    padding: 4px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .ap-bullet-list li:last-child { border-bottom: none; }
+  .ap-bullet-list li::marker { color: var(--accent); }
+
+  /* ── CTA FOOTER ── */
+  .ap-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  .ap-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 11px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .ap-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .ap-btn-primary   { background: var(--ink);   color: #fff; }
+  .ap-btn-secondary { background: transparent;  color: var(--ink); border: 1px solid var(--rule); }
+  .ap-btn-accent    { background: var(--accent); color: #fff; }
+</style>
+
+<div class="ap-wrap">
+
+  <!-- HERO -->
+  <header class="ap-hero">
+    <p class="ap-hero-label">Machine Learning · Educational Analytics</p>
+    <h1>Student Performance <em>Prediction</em> System</h1>
+    <p>
+      An AI-powered platform that predicts student mathematics scores from
+      demographic and academic inputs, classifies performance levels, and
+      provides interactive tutoring through a built-in LLM chatbot.
+    </p>
+  </header>
+
+  <!-- PIPELINE -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">🔗</span>
+      <h2>Prediction Pipeline</h2>
     </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🎯 Project Overview</h3>
-        <p style="font-size: 1.1em; line-height: 1.6; color: #666;">
-            The Student Performance Prediction System is a machine learning web application designed to predict a student's mathematics score based on demographic and academic factors such as gender, parental education level, lunch type, test preparation course, reading score, and writing score.
-        </p>
-        <p style="font-size: 1.05em; line-height: 1.6; color: #666; margin-top: 10px;">
-            Trained machine learning models analyze these inputs to generate accurate predictions. A Flask-based web interface allows users to easily enter student details and instantly view prediction results along with performance insights.
-        </p>
-        <p style="font-size: 1.05em; line-height: 1.6; color: #666; margin-top: 10px;">
-            In addition to predictive analytics, the platform includes a built-in AI Tutor Chatbot that allows students to ask questions related to mathematics, data science, or academic topics directly from the web interface. The chatbot provides real-time explanations and learning assistance, making the system both a prediction tool and an interactive educational assistant.
-        </p>
-        <p style="font-size: 1.05em; line-height: 1.6; color: #666; margin-top: 10px;">
-            The project demonstrates an end-to-end machine learning system, combining data processing, model training, and real-time prediction through a production-style data science pipeline. The architecture reflects real-world ML engineering practices used in industry, including data ingestion and preprocessing, feature engineering and transformation, model training and evaluation, an automated prediction pipeline, and deployment via a web application.
-        </p>
+    <div class="ap-pipeline">
+      <img src="{{ url_for('static', filename='images/student_data_pipeline.png') }}"
+           alt="Student Data Analysis and Prediction Pipeline">
     </div>
+  </section>
 
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🧩 Data Analysis & Prediction Pipeline</h3>
-        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
-            <p style="color: #666; margin-bottom: 15px;">
-                The system follows a structured student data analysis and prediction pipeline, starting from raw data input and ending with a categorized predicted math score.
-            </p>
-            <img src="{{ url_for('static', filename='images/student_data_pipeline.png') }}"
-                 alt="Student Data Analysis and Prediction Pipeline"
-                 style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+  <!-- HOW IT WORKS -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">⚙️</span>
+      <h2>How It Works</h2>
+    </div>
+    <div class="ap-steps">
+      <div class="ap-step">
+        <span class="ap-step-num">01</span>
+        <div class="ap-step-body">
+          <strong>Data Collection</strong>
+          <p>Raw student data — gender, ethnicity, parental education, lunch type, test prep, reading and writing scores — forms the feature set.</p>
         </div>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🔍 Key Features</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
-                <h4 style="color: #1976d2; margin-bottom: 10px;">🎓 Educational Insights</h4>
-                <p style="margin: 0; color: #666;">Helps educators identify students who may require additional academic support and plan early intervention strategies.</p>
-            </div>
-            <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; border-left: 4px solid #9c27b0;">
-                <h4 style="color: #7b1fa2; margin-bottom: 10px;">⚡ Real-Time Predictions</h4>
-                <p style="margin: 0; color: #666;">Provides instant math score predictions with performance categorization for quick, data-driven decisions.</p>
-            </div>
-            <div style="background: #e8f5e8; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
-                <h4 style="color: #388e3c; margin-bottom: 10px;">📊 Student Performance Classification</h4>
-                <p style="margin: 0; color: #666;">Automatically categorizes students into performance bands (No Assistance, Needs Support, Needs Significant Help).</p>
-            </div>
-            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; border-left: 4px solid #ff9800;">
-                <h4 style="color: #f57c00; margin-bottom: 10px;">🔧 Modular ML Architecture</h4>
-                <p style="margin: 0; color: #666;">Implements separate modules for data ingestion, transformation, training, and prediction inspired by real MLOps pipelines.</p>
-            </div>
-            <div style="background: #e8f5ff; padding: 20px; border-radius: 10px; border-left: 4px solid #1976d2;">
-                <h4 style="color: #1565c0; margin-bottom: 10px;">🚀 Production-Oriented Design</h4>
-                <p style="margin: 0; color: #666;">Includes logging, exception handling, model artifacts, and a scalable project structure aligned with CI/CD concepts.</p>
-            </div>
-            <div style="background: #f1f8e9; padding: 20px; border-radius: 10px; border-left: 4px solid #7cb342;">
-                <h4 style="color: #558b2f; margin-bottom: 10px;">📱 Interactive Web Interface</h4>
-                <p style="margin: 0; color: #666;">User-friendly Flask web app where users can input student details and receive predictions in seconds.</p>
-            </div>
-            <div style="background: #ede7f6; padding: 20px; border-radius: 10px; border-left: 4px solid #673ab7;">
-                <h4 style="color: #4527a0; margin-bottom: 10px;">🤖 Built‑in AI Tutor Chatbot</h4>
-                <p style="margin: 0; color: #666;">Floating chatbot available on every page that answers study questions using a Groq‑powered LLM via the <code>/api/tutor</code> endpoint.</p>
-            </div>
+      </div>
+      <div class="ap-step">
+        <span class="ap-step-num">02</span>
+        <div class="ap-step-body">
+          <strong>Preprocessing & Transformation</strong>
+          <p>Missing values are handled, categorical features encoded, and numerical values scaled so every model trains on clean, normalised input.</p>
         </div>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">💻 Technology Stack</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <div style="text-align: center;">
-                    <div style="font-size: 2em; margin-bottom: 10px;">🐍</div>
-                    <strong>Python</strong>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Core programming language</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2em; margin-bottom: 10px;">🔬</div>
-                    <strong>Scikit-learn</strong>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Machine learning models & preprocessing</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2em; margin-bottom: 10px;">🚀</div>
-                    <strong>XGBoost</strong>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Gradient boosting algorithms</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2em; margin-bottom: 10px;">🐱</div>
-                    <strong>CatBoost</strong>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Handling categorical features</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2em; margin-bottom: 10px;">📊</div>
-                    <strong>Pandas &amp; NumPy</strong>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Data processing & numerical computation</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2em; margin-bottom: 10px;">🌶️</div>
-                    <strong>Flask</strong>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Backend web framework</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2em; margin-bottom: 10px;">🖥️</div>
-                    <strong>HTML, CSS, Jinja2</strong>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9em;">Frontend templates and styling</p>
-                </div>
-            </div>
+      </div>
+      <div class="ap-step">
+        <span class="ap-step-num">03</span>
+        <div class="ap-step-body">
+          <strong>Model Training & Selection</strong>
+          <p>Seven regression algorithms are trained and ranked by R² score. The best model is serialised as a reusable artifact.</p>
         </div>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">📋 Input Features</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                <h4 style="color: #667eea; margin-bottom: 15px;">👤 Demographic Information</h4>
-                <ul style="color: #666; margin: 0; padding-left: 20px;">
-                    <li><strong>Gender</strong></li>
-                    <li><strong>Race/Ethnicity</strong></li>
-                    <li><strong>Parental Level of Education</strong></li>
-                </ul>
-            </div>
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                <h4 style="color: #28a745; margin-bottom: 15px;">📚 Academic Factors</h4>
-                <ul style="color: #666; margin: 0; padding-left: 20px;">
-                    <li><strong>Lunch Type</strong></li>
-                    <li><strong>Test Preparation Course</strong></li>
-                    <li><strong>Reading Score</strong></li>
-                    <li><strong>Writing Score</strong></li>
-                </ul>
-            </div>
+      </div>
+      <div class="ap-step">
+        <span class="ap-step-num">04</span>
+        <div class="ap-step-body">
+          <strong>Real-Time Prediction</strong>
+          <p>On form submission the artifact is loaded, input is transformed through the saved pipeline, and a maths score is predicted in under 0.1 s.</p>
         </div>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">⚙️ How the System Works</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
-            <ol style="padding-left: 20px; margin: 0;">
-                <li style="margin-bottom: 10px;">
-                    <strong>1️⃣ Data Collection:</strong> The dataset contains student information such as gender, race/ethnicity, parental level of education, lunch type, test preparation course, reading score, and writing score. These features are used as inputs to predict the mathematics score.
-                </li>
-                <li style="margin-bottom: 10px;">
-                    <strong>2️⃣ Data Processing:</strong> The dataset is prepared using preprocessing techniques such as handling missing values, encoding categorical features, and applying feature scaling/normalization so that the models can learn effectively.
-                </li>
-                <li style="margin-bottom: 10px;">
-                    <strong>3️⃣ Model Training:</strong> Multiple machine learning algorithms are trained and evaluated, including Random Forest Regressor, Decision Tree Regressor, Gradient Boosting Regressor, Linear Regression, XGBoost Regressor, CatBoost Regressor, and AdaBoost Regressor. The best model is selected based on R² score performance.
-                </li>
-                <li style="margin-bottom: 10px;">
-                    <strong>4️⃣ Prediction Pipeline:</strong> When a user submits student details through the web interface, the trained model is loaded from the artifacts, the input is preprocessed using the transformation pipeline, and the predicted mathematics score is generated and displayed on the results page.
-                </li>
-                <li>
-                    <strong>5️⃣ AI Tutor Interaction:</strong> Students can also interact with the AI Tutor Chatbot to ask questions related to mathematics or academic topics, enabling personalized learning support alongside prediction insights.
-                </li>
-            </ol>
+      </div>
+      <div class="ap-step">
+        <span class="ap-step-num">05</span>
+        <div class="ap-step-body">
+          <strong>AI Tutor Interaction</strong>
+          <p>Students can ask the floating chatbot any academic question; the Groq-backed LLM responds with step-by-step explanations in real time.</p>
         </div>
+      </div>
     </div>
+  </section>
 
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🎓 Student Assistance Classification</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
-            <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-left: 4px solid #43a047;">
-                <h4 style="color: #2e7d32; margin-bottom: 10px;">🟢 No Assistance Needed</h4>
-                <p style="margin: 0; color: #555;">Score ≥ 60 → The student is performing well (Excellent / Good) and typically does not require additional academic support.</p>
-            </div>
-            <div style="background: #fffde7; padding: 20px; border-radius: 10px; border-left: 4px solid #fbc02d;">
-                <h4 style="color: #f57f17; margin-bottom: 10px;">🟡 Needs Support</h4>
-                <p style="margin: 0; color: #555;">Score 40 – 59 → The student may require additional academic support and focused guidance.</p>
-            </div>
-            <div style="background: #ffebee; padding: 20px; border-radius: 10px; border-left: 4px solid #e53935;">
-                <h4 style="color: #c62828; margin-bottom: 10px;">🔴 Needs Significant Help</h4>
-                <p style="margin: 0; color: #555;">Score &lt; 40 → The student may need strong academic assistance and early intervention to improve performance.</p>
-            </div>
-        </div>
+  <!-- INPUT FEATURES -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">📋</span>
+      <h2>Input Features</h2>
     </div>
+    <div class="ap-inputs">
+      <div class="ap-input-group">
+        <h4>Demographic</h4>
+        <ul>
+          <li>Gender</li>
+          <li>Race / Ethnicity</li>
+          <li>Parental Level of Education</li>
+        </ul>
+      </div>
+      <div class="ap-input-group">
+        <h4>Academic</h4>
+        <ul>
+          <li>Lunch Type</li>
+          <li>Test Preparation Course</li>
+          <li>Reading Score</li>
+          <li>Writing Score</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">📂 Project Architecture</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
-            <ul style="color: #555; margin: 0; padding-left: 20px; line-height: 1.7;">
-                <li><strong>Core Application:</strong> <code>app.py</code> – handles Flask web routes and prediction logic.</li>
-                <li><strong>Machine Learning Pipeline:</strong> <code>src/components</code> – modules for data ingestion, data transformation, and model training.</li>
-                <li><strong>Prediction Pipeline:</strong> <code>src/pipeline</code> – loads the trained model and preprocessor for real-time predictions.</li>
-                <li><strong>Artifacts:</strong> <code>artifacts/</code> – stores trained models and processed datasets.</li>
-                <li><strong>Notebooks:</strong> <code>notebook/</code> – Jupyter notebooks used for EDA and experimentation.</li>
-                <li><strong>Templates:</strong> <code>templates/</code> – HTML pages used by the Flask web interface.</li>
-                <li><strong>Logs:</strong> <code>logs/</code> – system logs for monitoring and debugging.</li>
-            </ul>
-        </div>
+  <!-- PERFORMANCE TIERS -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">🎓</span>
+      <h2>Performance Classification</h2>
     </div>
+    <div class="ap-tiers">
+      <div class="ap-tier green">
+        <h4>🟢 No Assistance Needed</h4>
+        <p>Score ≥ 60 — Student is performing well and typically needs no additional support.</p>
+      </div>
+      <div class="ap-tier yellow">
+        <h4>🟡 Needs Support</h4>
+        <p>Score 40 – 59 — Student may benefit from additional guidance and focused attention.</p>
+      </div>
+      <div class="ap-tier red">
+        <h4>🔴 Needs Significant Help</h4>
+        <p>Score &lt; 40 — Student requires early intervention and strong academic assistance.</p>
+      </div>
+    </div>
+  </section>
 
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">📡 System Architecture</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
-            <p style="margin-bottom: 10px;">The system is designed using a modular machine learning architecture inspired by production AI systems:</p>
-            <ul style="margin: 0; padding-left: 20px;">
-                <li>User Input (Student Data) → Flask Web Application</li>
-                <li>Flask Web Application → Prediction Pipeline</li>
-                <li>Prediction Pipeline → Load Preprocessing Pipeline</li>
-                <li>Preprocessing Pipeline → Load Trained ML Model</li>
-                <li>ML Model → Generate Predicted Math Score</li>
-                <li>Predicted Score → Performance Classification</li>
-                <li>Final Output → Display Results on Web Interface</li>
-            </ul>
-        </div>
-        <div style="margin-top: 20px; text-align: center;">
-            <img src="{{ url_for('static', filename='images/student_data_pipeline.png') }}"
-                 alt="Student Data Analysis and Prediction Pipeline"
-                 style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-        </div>
+  <!-- MODEL PERFORMANCE -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">📈</span>
+      <h2>Model Performance</h2>
     </div>
+    <div class="ap-metrics">
+      <div class="ap-metric">
+        <div class="val">0.88</div>
+        <div class="lbl">R² Score</div>
+        <div class="desc">Explains most variance in student scores</div>
+      </div>
+      <div class="ap-metric">
+        <div class="val">4.2</div>
+        <div class="lbl">MAE</div>
+        <div class="desc">Avg. gap between predicted and actual scores</div>
+      </div>
+      <div class="ap-metric">
+        <div class="val">5.8</div>
+        <div class="lbl">RMSE</div>
+        <div class="desc">Magnitude of prediction errors</div>
+      </div>
+      <div class="ap-metric">
+        <div class="val">&lt;0.1s</div>
+        <div class="lbl">Latency</div>
+        <div class="desc">Supports real-time predictions</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <p style="font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;">Algorithms evaluated:</p>
+      <div class="ap-model-list">
+        <span class="ap-model-chip">Random Forest</span>
+        <span class="ap-model-chip">Decision Tree</span>
+        <span class="ap-model-chip">Gradient Boosting</span>
+        <span class="ap-model-chip">Linear Regression</span>
+        <span class="ap-model-chip">XGBoost</span>
+        <span class="ap-model-chip">CatBoost</span>
+        <span class="ap-model-chip">AdaBoost</span>
+      </div>
+    </div>
+  </section>
 
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🤖 AI Tutor Chatbot</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
-            <p style="margin-bottom: 10px;">
-                In addition to score prediction, the application includes an integrated <strong>AI Tutor chatbot</strong> that helps students understand mathematical and data science concepts directly from the web interface.
-                A floating chat button is available on every page, opening a conversational window where users can ask questions.
-            </p>
-            <ul style="margin: 0; padding-left: 20px;">
-                <li><strong>Frontend:</strong> Floating chatbot UI built into the base template, accessible from all pages.</li>
-                <li><strong>Backend API:</strong> A dedicated endpoint <code>/api/tutor</code> receives user questions and returns AI-generated answers in JSON.</li>
-                <li><strong>LLM Provider:</strong> Uses the Groq Python SDK with the <code>llama-3.1-8b-instant</code> model for fast, high‑quality educational responses.</li>
-                <li><strong>Configuration:</strong> The Groq API key is securely loaded from a <code>.env</code> file via <code>python-dotenv</code> and never exposed to the frontend.</li>
-                <li><strong>Use Case:</strong> Acts as an interactive study assistant, explaining topics, suggesting resources, and guiding students step‑by‑step.</li>
-            </ul>
-        </div>
+  <!-- KEY FEATURES -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">✨</span>
+      <h2>Key Features</h2>
     </div>
+    <div class="ap-features">
+      <div class="ap-feature">
+        <div class="ap-feature-icon">🎓</div>
+        <h4>Educational Insights</h4>
+        <p>Helps educators identify students needing extra support and plan early intervention strategies.</p>
+      </div>
+      <div class="ap-feature">
+        <div class="ap-feature-icon">⚡</div>
+        <h4>Real-Time Predictions</h4>
+        <p>Instant score estimates with performance classification for data-driven decisions.</p>
+      </div>
+      <div class="ap-feature">
+        <div class="ap-feature-icon">🔧</div>
+        <h4>Modular ML Architecture</h4>
+        <p>Separate modules for ingestion, transformation, training, and prediction — MLOps inspired.</p>
+      </div>
+      <div class="ap-feature">
+        <div class="ap-feature-icon">🚀</div>
+        <h4>Production-Oriented Design</h4>
+        <p>Logging, exception handling, artifact management, and CI/CD-ready project structure.</p>
+      </div>
+      <div class="ap-feature">
+        <div class="ap-feature-icon">📱</div>
+        <h4>Interactive Web Interface</h4>
+        <p>Clean Flask UI — enter student details and receive predictions in seconds.</p>
+      </div>
+      <div class="ap-feature">
+        <div class="ap-feature-icon">🤖</div>
+        <h4>Built-in AI Tutor</h4>
+        <p>Floating chatbot on every page powered by a Groq LLM via <code>/api/tutor</code>.</p>
+      </div>
+    </div>
+  </section>
 
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">📈 Model Performance Dashboard</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
-            <p style="color: #555; margin-bottom: 15px;">
-                The performance of the machine learning models is evaluated using multiple regression metrics to ensure reliable predictions:
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; text-align: center;">
-                <div>
-                    <div style="font-size: 2em; margin-bottom: 5px; color: #2e7d32;">📊</div>
-                    <strong>R² Score</strong>
-                    <p style="margin: 5px 0; color: #666;">0.88 – explains most of the variance in scores</p>
-                </div>
-                <div>
-                    <div style="font-size: 2em; margin-bottom: 5px; color: #1976d2;">📉</div>
-                    <strong>Mean Absolute Error (MAE)</strong>
-                    <p style="margin: 5px 0; color: #666;">4.2 – average difference between predicted and actual scores</p>
-                </div>
-                <div>
-                    <div style="font-size: 2em; margin-bottom: 5px; color: #f57c00;">🎯</div>
-                    <strong>Root Mean Square Error (RMSE)</strong>
-                    <p style="margin: 5px 0; color: #666;">5.8 – measures the magnitude of prediction errors</p>
-                </div>
-                <div>
-                    <div style="font-size: 2em; margin-bottom: 5px; color: #7b1fa2;">⚡</div>
-                    <strong>Prediction Time</strong>
-                    <p style="margin: 5px 0; color: #666;">&lt; 0.1 sec – supports real-time predictions</p>
-                </div>
-            </div>
+  <!-- AI TUTOR -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">🤖</span>
+      <h2>AI Tutor Chatbot</h2>
+    </div>
+    <div class="ap-chatbot-grid">
+      <div class="ap-chatbot-item">
+        <span class="ci-icon">🖥️</span>
+        <div>
+          <h5>Frontend</h5>
+          <p>Floating chat button embedded in the base template, accessible on every page.</p>
         </div>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🧠 AI Model Explanation</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
-            <p style="margin-bottom: 10px;">
-                The system evaluates several regression algorithms and selects the best-performing model for deployment:
-            </p>
-            <ul style="margin: 0 0 10px 0; padding-left: 20px;">
-                <li>Random Forest Regressor</li>
-                <li>Decision Tree Regressor</li>
-                <li>Gradient Boosting Regressor</li>
-                <li>Linear Regression</li>
-                <li>XGBoost Regressor</li>
-                <li>CatBoost Regressor</li>
-                <li>AdaBoost Regressor</li>
-            </ul>
-            <p style="margin-bottom: 10px;">
-                Models are evaluated using the R² score and error metrics, and the best-performing model is serialized as a model artifact.
-                This artifact is then loaded by the prediction pipeline inside the Flask app to generate real-time predictions.
-            </p>
+      </div>
+      <div class="ap-chatbot-item">
+        <span class="ci-icon">🔌</span>
+        <div>
+          <h5>Backend API</h5>
+          <p><code>/api/tutor</code> receives questions and returns AI answers as JSON.</p>
         </div>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🔄 CI/CD &amp; MLOps Concepts</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
-            <p style="margin-bottom: 10px;">
-                The project is inspired by modern MLOps and CI/CD practices used in production machine learning systems:
-            </p>
-            <ul style="margin: 0; padding-left: 20px;">
-                <li>Modular machine learning pipeline design for easier maintenance and extension.</li>
-                <li>Model artifact management for storing and reusing trained models.</li>
-                <li>Logging and exception handling for debugging and monitoring.</li>
-                <li>Automated prediction pipeline that separates preprocessing from inference.</li>
-                <li>Scalable project architecture suitable for deployment on cloud platforms.</li>
-            </ul>
+      </div>
+      <div class="ap-chatbot-item">
+        <span class="ci-icon">⚡</span>
+        <div>
+          <h5>LLM Provider</h5>
+          <p>Groq SDK with <code>llama-3.1-8b-instant</code> for fast, high-quality responses.</p>
         </div>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🚀 Future Improvements</h3>
-        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
-            <ul style="margin: 0; padding-left: 20px;">
-                <li>Integrate with real educational institution datasets.</li>
-                <li>Containerize the application using Docker and deploy to cloud platforms.</li>
-                <li>Add automated CI/CD pipelines for retraining and updating models.</li>
-                <li>Implement model monitoring and performance tracking dashboards.</li>
-                <li>Build interactive visual dashboards for educators to explore insights.</li>
-            </ul>
+      </div>
+      <div class="ap-chatbot-item">
+        <span class="ci-icon">🔒</span>
+        <div>
+          <h5>Security</h5>
+          <p>API key loaded from <code>.env</code> via <code>python-dotenv</code>; never exposed to the client.</p>
         </div>
+      </div>
     </div>
+  </section>
 
-    <div style="margin-bottom: 40px;">
-        <h3 style="color: #495057; margin-bottom: 20px;">🌍 Project Impact</h3>
-        <div style="background: #e7f3ff; padding: 25px; border-radius: 10px; line-height: 1.7; color: #555;">
-            <p style="margin-bottom: 10px;">
-                This project demonstrates how AI and data science can improve education systems by predicting student academic performance and providing actionable insights.
-            </p>
-            <ul style="margin: 0; padding-left: 20px;">
-                <li>Predicts student mathematics performance using historical data.</li>
-                <li>Identifies students who may need additional academic support.</li>
-                <li>Enables data-driven educational decisions and targeted interventions.</li>
-                <li>Supports early academic intervention strategies for at-risk students.</li>
-            </ul>
-        </div>
+  <!-- TECHNOLOGY STACK -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">💻</span>
+      <h2>Technology Stack</h2>
     </div>
+    <div class="ap-stack">
+      <span class="ap-tag">🐍 Python</span>
+      <span class="ap-tag">🔬 Scikit-learn</span>
+      <span class="ap-tag">🚀 XGBoost</span>
+      <span class="ap-tag">🐱 CatBoost</span>
+      <span class="ap-tag">📊 Pandas</span>
+      <span class="ap-tag">🔢 NumPy</span>
+      <span class="ap-tag">🌶️ Flask</span>
+      <span class="ap-tag">🖥️ HTML / CSS</span>
+      <span class="ap-tag">🧩 Jinja2</span>
+      <span class="ap-tag">⚡ Groq SDK</span>
+    </div>
+  </section>
 
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="{{ url_for('home') }}" class="btn" style="font-size: 18px; padding: 15px 40px; margin-right: 15px;">
-            🏠 Back to Home
-        </a>
-        <a href="{{ url_for('about') }}" class="btn btn-secondary" style="font-size: 18px; padding: 15px 40px; margin-right: 15px;">
-            👨‍💻 About Author
-        </a>
-        <a href="{{ url_for('predict') }}" class="btn btn-secondary" style="font-size: 18px; padding: 15px 40px;">
-            🔮 Try Prediction
-        </a>
+  <!-- PROJECT ARCHITECTURE -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">📂</span>
+      <h2>Project Architecture</h2>
     </div>
+    <div class="ap-arch-list">
+      <div class="ap-arch-item">
+        <span class="ap-arch-code">app.py</span>
+        <p>Flask web routes, prediction logic, and AI tutor endpoint.</p>
+      </div>
+      <div class="ap-arch-item">
+        <span class="ap-arch-code">src/components</span>
+        <p>Modules for data ingestion, transformation, and model training.</p>
+      </div>
+      <div class="ap-arch-item">
+        <span class="ap-arch-code">src/pipeline</span>
+        <p>Loads trained model and preprocessor for real-time inference.</p>
+      </div>
+      <div class="ap-arch-item">
+        <span class="ap-arch-code">artifacts/</span>
+        <p>Serialised models and processed datasets.</p>
+      </div>
+      <div class="ap-arch-item">
+        <span class="ap-arch-code">notebook/</span>
+        <p>Jupyter notebooks for EDA and model experimentation.</p>
+      </div>
+      <div class="ap-arch-item">
+        <span class="ap-arch-code">templates/</span>
+        <p>Jinja2 HTML pages served by the Flask application.</p>
+      </div>
+      <div class="ap-arch-item">
+        <span class="ap-arch-code">logs/</span>
+        <p>System logs for monitoring, debugging, and auditing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE IMPROVEMENTS -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">🚀</span>
+      <h2>Future Improvements</h2>
+    </div>
+    <ul class="ap-bullet-list">
+      <li>Integrate with real educational institution datasets.</li>
+      <li>Containerise using Docker and deploy to cloud platforms (AWS / GCP).</li>
+      <li>Add automated CI/CD pipelines for model retraining and versioning.</li>
+      <li>Implement model-monitoring and drift-detection dashboards.</li>
+      <li>Build interactive visual dashboards for educators to explore cohort insights.</li>
+    </ul>
+  </section>
+
+  <!-- PROJECT IMPACT -->
+  <section class="ap-section">
+    <div class="ap-section-head">
+      <span class="icon">🌍</span>
+      <h2>Project Impact</h2>
+    </div>
+    <ul class="ap-bullet-list">
+      <li>Predicts mathematics performance using historical student data.</li>
+      <li>Identifies students who may need extra academic support early.</li>
+      <li>Enables data-driven educational decisions and targeted interventions.</li>
+      <li>Demonstrates production-grade ML engineering practices in an educational context.</li>
+    </ul>
+  </section>
+
+  <!-- CTA -->
+  <div class="ap-cta">
+    <a href="{{ url_for('home') }}"    class="ap-btn ap-btn-primary">🏠 Home</a>
+    <a href="{{ url_for('about') }}"   class="ap-btn ap-btn-secondary">👨‍💻 About Author</a>
+    <a href="{{ url_for('predict') }}" class="ap-btn ap-btn-accent">🔮 Try Prediction</a>
+  </div>
+
 </div>
 {% endblock %}
