@@ -80,7 +80,7 @@ llama-3.1-8b-instant
 
 * Scikit-learn
 * XGBoost
-* CatBoost
+
 
 ### Data Processing
 
